@@ -90,6 +90,8 @@ const deleteUser = async (req, res, next) => {
       _id: req.params.id,
       isAdmin: { $ne: true },
     });
+    // console.log(req.params.id);
+
     return res
       .status(200)
       .json({ message: "User deleted successfully", success: true });
@@ -170,10 +172,10 @@ const updateLanguage = async (req, res, next) => {
       { _id: req.params.id },
       { name: name, code: code }
     );
-    // return res.redirect("/languages");
-    return res
-      .status(200)
-      .json({ message: "Language updated successfully", success: true });
+    return res.redirect("/languages");
+    // return res
+    //   .status(200)
+    //   .json({ message: "Language updated successfully", success: true });
   } catch (error) {
     console.log(error);
     return res
@@ -407,7 +409,7 @@ const getAuthors = async (headers) => {
     let cauthor_data = await cdata.json();
     ctotal_shows = cauthor_data.shows.total;
     offset += 50;
-    console.log(offset, ctotal_shows);
+    // console.log(offset, ctotal_shows);
     shows.push(cauthor_data.shows);
   } while (offset < ctotal_shows);
   let all_authors = shows

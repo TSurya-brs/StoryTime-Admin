@@ -73,7 +73,7 @@ const updateCount = async () => {
   let countData = await fetch("http://localhost:5000/admin/count");
   let count = await countData.json();
   if (count.success) {
-    console.log(count.data);
+    // console.log(count.data);
   } else {
     setTimeout(() => {
       updateCount();
